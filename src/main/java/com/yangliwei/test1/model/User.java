@@ -2,6 +2,7 @@ package com.yangliwei.test1.model;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 import java.util.Date;
@@ -21,4 +22,8 @@ public class User {
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
+
+    @TableLogic(value = "0",delval = "1")
+    @TableField(fill = FieldFill.INSERT)
+    private Integer isShow;
 }
