@@ -50,8 +50,7 @@ public class UserController extends BaseController {
         if(name != null ){
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.select().eq("name",name);
-            List<User> users = userMapper.selectList(queryWrapper);
-            if(!users.isEmpty()) {
+            if(userMapper.selectCount(queryWrapper)>0) {
                 return AjaxResult.error("已经存在该用户,请换个名字");
             }
         }
