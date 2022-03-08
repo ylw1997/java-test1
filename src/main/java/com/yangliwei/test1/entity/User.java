@@ -1,8 +1,6 @@
-package com.yangliwei.test1.model;
+package com.yangliwei.test1.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,7 +9,9 @@ import java.util.Date;
  * @author ylw12
  */
 @Data
+@TableName("user")
 public class User {
+    @TableId(type = IdType.AUTO,value = "id")
     private Long id;
     private String name;
     private Integer age;
@@ -24,6 +24,6 @@ public class User {
     private Date updateTime;
 
     @TableLogic(value = "0",delval = "1")
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,select = false)
     private Integer isShow;
 }
