@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.mapper.PhoneMapper;
 import com.yangliwei.test1.service.IPhoneService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,4 +17,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PhoneServiceImpl extends ServiceImpl<PhoneMapper, Phone> implements IPhoneService {
+
+    @Autowired
+    PhoneMapper phoneMapper;
+
+    @Override
+    public Phone selectByBrand(String brand) {
+        return phoneMapper.selectByBrand(brand);
+    }
 }

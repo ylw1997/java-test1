@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yangliwei.test1.common.AjaxResult;
 import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.mapper.PhoneMapper;
+import com.yangliwei.test1.service.IPhoneService;
+import com.yangliwei.test1.service.impl.PhoneServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +26,18 @@ import java.util.List;
 public class PhoneController {
 
     @Autowired
-    private PhoneMapper phoneMapper;
+    private IPhoneService phoneService;
 
+    /**
+     * 根据品牌查询
+     * @param brand 品牌
+     * @return AjaxResult
+     */
+    @GetMapping("/brand")
+    public AjaxResult getPhoneByBrand(@RequestParam String brand){
+        Phone phone = phoneService.selectByBrand(brand);
+        return AjaxResult.success(phone);
+    }
 
     /**
      * 查询所有
@@ -38,7 +50,7 @@ public class PhoneController {
         QueryWrapper<Phone> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("id");
         Page<Phone> pageObj = new Page<>(page,size);
-        return AjaxResult.success(phoneMapper.selectPage(pageObj,queryWrapper));
+        return AjaxResult.success(phoneService.page(pageObj,queryWrapper));
     }
 
     /**
@@ -48,11 +60,11 @@ public class PhoneController {
      */
     @PostMapping("")
     public AjaxResult addPhone(@RequestBody Phone phone){
-        List<Phone> brand = phoneMapper.selectList(new QueryWrapper<Phone>().eq("brand", phone.getBrand()));
+        List<Phone> brand = phoneService.list(new QueryWrapper<Phone>().eq("brand", phone.getBrand()));
         if(brand.size()>0){
             return AjaxResult.error("该品牌已存在");
         }else{
-            return AjaxResult.success(phoneMapper.insert(phone));
+            return AjaxResult.success(phoneService.save(phone));
         }
     }
 
@@ -63,7 +75,7 @@ public class PhoneController {
      */
     @PutMapping("")
     public AjaxResult updatePhone(@RequestBody Phone phone){
-        return AjaxResult.success(phoneMapper.updateById(phone));
+        return AjaxResult.success(phoneService.updateById(phone));
     }
 
     /**
@@ -73,7 +85,7 @@ public class PhoneController {
      */
     @DeleteMapping("/{id}")
     public AjaxResult deletePhone(@PathVariable String id){
-        return AjaxResult.success(phoneMapper.deleteById(id));
+        return AjaxResult.success(phoneService.removeById(id));
     }
 
 }

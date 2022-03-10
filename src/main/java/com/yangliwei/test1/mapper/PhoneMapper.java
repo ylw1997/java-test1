@@ -12,5 +12,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2022-03-07
  */
 public interface PhoneMapper extends BaseMapper<Phone> {
-
+    /**
+     * 根据品牌查询
+     * @param brand 品牌
+     * @return Phone
+     */
+    Phone selectByBrand(String brand);
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangliwei.test1.mapper.PhoneMapper">
+
+    <select id="selectByBrand" resultType="com.yangliwei.test1.entity.Phone">
+        select *
+        from phone
+        where brand = #{brand}
+    </select>
+</mapper>
