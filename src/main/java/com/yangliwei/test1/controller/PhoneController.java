@@ -8,6 +8,7 @@ import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.mapper.PhoneMapper;
 import com.yangliwei.test1.service.IPhoneService;
 import com.yangliwei.test1.service.impl.PhoneServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ import java.util.List;
  * @author yangliwei
  * @since 2022-03-07
  */
+@Slf4j
 @RestController
 @RequestMapping("/phone")
 public class PhoneController {
@@ -84,7 +86,7 @@ public class PhoneController {
      * @return AjaxResult
      */
     @DeleteMapping("/{id}")
-    public AjaxResult deletePhone(@PathVariable String id){
+    public AjaxResult deletePhone(@PathVariable Long id){
         return AjaxResult.success(phoneService.removeById(id));
     }
 
