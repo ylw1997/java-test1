@@ -1,6 +1,7 @@
 package com.yangliwei.test1.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,11 @@ public interface IUserService extends IService<User> {
      * @return Users
      */
     List<User> getUsersByAge(Integer age);
+
+    /**
+     * 根据id查询用户手机信息
+     * @param id id
+     * @return Phones
+     */
+    List<Phone> getPhonesByUserId(Long id);
 }

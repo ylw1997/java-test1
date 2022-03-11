@@ -7,4 +7,7 @@
     <select id="selectUsersByAge" resultType="com.yangliwei.test1.entity.User">
         SELECT * FROM user WHERE age = #{age}
     </select>
+    <select id="selectPhonesByUserId" resultType="com.yangliwei.test1.entity.Phone">
+        SELECT * FROM phone WHERE user_id = #{userId}
+    </select>
 </mapper>

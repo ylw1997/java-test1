@@ -1,6 +1,7 @@
 package com.yangliwei.test1.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,4 +25,11 @@ public interface UserMapper extends BaseMapper<User> {
      * @return  User
      */
     List<User> selectUsersByAge(@Param("age") Integer age);
+
+    /**
+     * 根据用户id查询用户手机
+     * @param id    id
+     * @return List<Phone>
+     */
+    List<Phone> selectPhonesByUserId(Long id);
 }

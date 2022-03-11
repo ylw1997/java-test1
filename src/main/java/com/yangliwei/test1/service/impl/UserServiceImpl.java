@@ -1,6 +1,7 @@
 package com.yangliwei.test1.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.entity.User;
 import com.yangliwei.test1.mapper.UserMapper;
 import com.yangliwei.test1.service.IUserService;
@@ -26,6 +27,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public List<User> getUsersByAge(Integer age) {
         return userMapper.selectUsersByAge(age);
+    }
+
+    @Override
+    public List<Phone> getPhonesByUserId(Long id) {
+        return userMapper.selectPhonesByUserId(id);
     }
 
 }
