@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author ylw12
  */
@@ -62,7 +64,7 @@ public class UserController extends BaseController {
      * @return 成功
      */
     @PostMapping
-    public AjaxResult insertUser (@RequestBody User user){
+    public AjaxResult insertUser (  @RequestBody @Valid User user){
         log.info("添加user"+user);
         String name = user.getName();
 
@@ -82,7 +84,7 @@ public class UserController extends BaseController {
      * @return  成功
      */
     @PutMapping
-    public AjaxResult updateUser(@RequestBody User user){
+    public AjaxResult updateUser(  @RequestBody @Valid User user){
         if(user.getId() == null){
             return AjaxResult.error("缺少id");
         }
