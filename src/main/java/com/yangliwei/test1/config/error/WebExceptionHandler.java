@@ -27,7 +27,7 @@ public class WebExceptionHandler {
     @ExceptionHandler(CustomException.class)
     @ResponseBody
     public AjaxResult customException(CustomException e){
-        log.error("自定义异常：",e);
+        log.error("自定义异常：${}",e.getMessage());
         return AjaxResult.error(e.getCode(),e.getMessage());
     }
 
