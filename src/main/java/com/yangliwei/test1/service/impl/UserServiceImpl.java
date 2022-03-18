@@ -1,6 +1,8 @@
 package com.yangliwei.test1.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yangliwei.test1.config.error.CustomException;
+import com.yangliwei.test1.config.error.CustomExceptionType;
 import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.entity.User;
 import com.yangliwei.test1.mapper.UserMapper;
@@ -32,6 +34,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public List<Phone> getPhonesByUserId(Long id) {
         return userMapper.selectPhonesByUserId(id);
+    }
+
+    @Override
+    public void userTest(int input) {
+        if(input == 1){
+            throw new CustomException(CustomExceptionType.PARAM_ERROR);
+        }else{
+            throw new CustomException(CustomExceptionType.SYSTEM_ERROR);
+        }
     }
 
 }

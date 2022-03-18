@@ -3,7 +3,6 @@ package com.yangliwei.test1.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yangliwei.test1.entity.Phone;
 import com.yangliwei.test1.entity.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -33,4 +32,10 @@ public interface IUserService extends IService<User> {
      * @return Phones
      */
     List<Phone> getPhonesByUserId(Long id);
+
+    /**
+     * 根据输入报错
+     * @param input input
+     */
+    void userTest(int input);
 }
