@@ -1,5 +1,7 @@
 package com.yangliwei.test1.common;
 
+import com.yangliwei.test1.config.error.CustomExceptionType;
+
 import java.util.HashMap;
 
 /**
@@ -74,10 +76,21 @@ public class AjaxResult extends HashMap<String, Object> {
         return AjaxResult.error(msg, null);
     }
 
-    public static AjaxResult error()
+        public static AjaxResult error()
     {
         return AjaxResult.error("操作失败");
     }
+
+    public static AjaxResult error(CustomExceptionType customExceptionType)
+    {
+        return AjaxResult.error(customExceptionType.getCode(), customExceptionType.getMessage());
+    }
+
+    public static AjaxResult error(CustomExceptionType customExceptionType, String msg)
+    {
+        return AjaxResult.error(customExceptionType.getCode(), msg);
+    }
+
 
 
     @Override

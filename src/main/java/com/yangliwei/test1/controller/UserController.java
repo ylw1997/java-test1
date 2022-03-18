@@ -109,4 +109,14 @@ public class UserController extends BaseController {
         return AjaxResult.success(userService.getPhonesByUserId(id));
     }
 
+    /**
+     * 错误测试
+     * @return ajaxResult
+     */
+    @GetMapping("/error/{id}")
+    public AjaxResult error(@PathVariable int id){
+        userService.userTest(id);
+        return AjaxResult.success();
+    }
+
 }
