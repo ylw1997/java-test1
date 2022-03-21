@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
 @Data
 @TableName("user")
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
     @TableId(type = IdType.AUTO,value = "id")
     private Long id;
     @NotEmpty(message = "姓名不能为空")

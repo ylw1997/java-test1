@@ -4,14 +4,21 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.yangliwei.test1.entity.User;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 
 @SpringBootTest
 class Test1ApplicationTests {
 
+    /**
+     * 测试代码生成
+     */
     @Test
     void contextLoads() {
 
@@ -34,6 +41,19 @@ class Test1ApplicationTests {
                     .templateEngine(new VelocityTemplateEngine())
                     // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                     .execute();
+        }
+
+        @Resource
+        private RedisTemplate<String, Object> redisTemplate;
+
+        @Test
+        public void stringRedisTemplate(){
+        	User user = new User();
+            user.setAge(12);
+            user.setName("yangliwei");
+            user.setId(1L);
+            user.setEmail("");
+            redisTemplate.opsForValue().set("user", user);
         }
 
 
