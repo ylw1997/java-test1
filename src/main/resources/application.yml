@@ -4,6 +4,10 @@ spring:
     username: yangliwei
     password: 123456
     url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf8
+  web:
+    upload-path: D:/data
+    resources:
+      static-locations: classpath:/static/,classpath:/public/,file:${spring.web.upload-path}
 server:
   port: 9001
 
