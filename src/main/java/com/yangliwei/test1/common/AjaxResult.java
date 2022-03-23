@@ -2,35 +2,31 @@ package com.yangliwei.test1.common;
 
 import com.yangliwei.test1.config.error.CustomException;
 import com.yangliwei.test1.config.error.CustomExceptionType;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
-
-import java.util.HashMap;
 
 /**
  * @author ylw12
  */
-public class AjaxResult extends HashMap<String, Object> {
-    public static final String CODE_TAG = "code";
-    public static final String MSG_TAG = "msg";
-    public static final String DATA_TAG = "data";
+@Data
+public class AjaxResult  {
 
-    public AjaxResult(){
+    private int code;
+    private String msg;
+    private Object data;
 
-    }
+    public AjaxResult(){}
 
-    public AjaxResult(int code,String msg){
-        super.put(CODE_TAG,code);
-        super.put(MSG_TAG,msg);
+    public AjaxResult(int code, String msg){
+        this.code = code;
+        this.msg = msg;
     }
 
     public AjaxResult(int code, String msg, Object data)
     {
-        super.put(CODE_TAG, code);
-        super.put(MSG_TAG, msg);
-        if (data != null)
-        {
-            super.put(DATA_TAG, data);
-        }
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
     }
 
     /**
@@ -99,18 +95,5 @@ public class AjaxResult extends HashMap<String, Object> {
 
     public static AjaxResult error(CustomException customException,String msg){
         return AjaxResult.error(customException.getCode(),msg);
-    }
-
-
-
-    @Override
-    public AjaxResult put(String key, Object data){
-        super.put(key,data);
-        return this;
-    }
-
-
-    public int getCode() {
-        return super.get(CODE_TAG) == null ? HttpStatus.OK.value() : (int) super.get(CODE_TAG);
     }
 }

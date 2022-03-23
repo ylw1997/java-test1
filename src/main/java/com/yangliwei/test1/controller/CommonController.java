@@ -5,8 +5,7 @@ import com.yangliwei.test1.common.Upload;
 import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +19,10 @@ import java.util.*;
 @RestController
 public class CommonController {
 
-    @Value("${spring.web.upload-path}")
-    private String uploadPath;
+    @GetMapping("/")
+   public AjaxResult homePage (){
+       return AjaxResult.success("欢迎使用");
+   }
 
     /**
      *  上传文件
