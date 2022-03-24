@@ -32,4 +32,11 @@ public interface UserMapper extends BaseMapper<User> {
      * @return List<Phone>
      */
     List<Phone> selectPhonesByUserId(Long id);
+
+    /**
+     * 根据用户名查询用户信息
+     * @param username username
+     * @return User
+     */
+    User findByUsername(String username);
 }

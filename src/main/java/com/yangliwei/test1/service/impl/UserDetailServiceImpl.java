@@ -1,0 +1,38 @@
+package com.yangliwei.test1.service.impl;
+
+import com.yangliwei.test1.entity.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+
+/**
+ *  用户详情服务实现类
+ *  spring security需要实现UserDetailsService接口,来获取用户信息
+ * @author yangliwei
+ */
+@Service
+@Slf4j
+public class UserDetailServiceImpl implements UserDetailsService {
+
+    @Autowired
+    private UserServiceImpl userService;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        // 查询用户信息
+        User user = userService.findByUsername(username);
+        log.info("用户信息：{}", user);
+        // 判断用户是否存在
+        if (Objects.isNull(user)) {
+            throw new RuntimeException("用户不存在");
+        }
+        //TODO 查询对应权限
+
+        return new LoginUser(user);
+    }
+}

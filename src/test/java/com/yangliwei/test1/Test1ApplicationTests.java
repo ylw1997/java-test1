@@ -5,13 +5,17 @@ import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import com.yangliwei.test1.entity.User;
+import com.yangliwei.test1.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
 import java.util.Collections;
+import java.util.List;
 
 @SpringBootTest
 class Test1ApplicationTests {
@@ -43,18 +47,28 @@ class Test1ApplicationTests {
                     .execute();
         }
 
-        @Resource
-        private RedisTemplate<String, Object> redisTemplate;
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
-        @Test
-        public void stringRedisTemplate(){
-        	User user = new User();
-            user.setAge(12);
-            user.setName("yangliwei");
-            user.setId(1L);
-            user.setEmail("");
-            redisTemplate.opsForValue().set("user", user);
-        }
+    @Test
+    public void stringRedisTemplate(){
+    	User user = new User();
+        user.setAge(12);
+        user.setName("yangliwei");
+        user.setId(1L);
+        user.setEmail("");
+        redisTemplate.opsForValue().set("user", user);
+    }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Test
+    public void passwordEncoder(){
+        String encode = passwordEncoder.encode("123456");
+        System.out.println(passwordEncoder.matches("123456", "$2a$10$sNDts1n3CP0kLuD2re3jWuyF5RJqqg1/zZ7f8.UxbR/KnZ813mcKO"));
+        System.out.println(encode);
+    }
 
 
 }

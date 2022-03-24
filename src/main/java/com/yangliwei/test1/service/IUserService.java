@@ -38,4 +38,11 @@ public interface IUserService extends IService<User> {
      * @param input input
      */
     void userTest(int input);
+
+    /**
+     *  根据用户名查询用户信息
+     * @param username username
+     * @return User
+     */
+    User findByUsername(String username);
 }

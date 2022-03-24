@@ -10,4 +10,7 @@
     <select id="selectPhonesByUserId" resultType="com.yangliwei.test1.entity.Phone">
         SELECT * FROM phone WHERE user_id = #{userId}
     </select>
+    <select id="findByUsername" resultType="com.yangliwei.test1.entity.User">
+        SELECT * FROM user WHERE name = #{username}
+    </select>
 </mapper>

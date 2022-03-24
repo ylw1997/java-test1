@@ -34,6 +34,14 @@ public class User implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
+    @TableField(select = false)
+    private String password;
+
+    private String phoneNumber;
+
+    @TableField(fill = FieldFill.INSERT)
+    private int userType;
+
     @TableLogic(value = "0",delval = "1")
     @TableField(fill = FieldFill.INSERT,select = false)
     private Integer isShow;
