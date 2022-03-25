@@ -45,4 +45,17 @@ public interface IUserService extends IService<User> {
      * @return User
      */
     User findByUsername(String username);
+
+    /**
+     *  登录方法
+     * @param user user
+     * @return User
+     */
+    String login(User user);
+
+    /**
+     *  退出
+     * @return String
+     */
+    String logout();
 }

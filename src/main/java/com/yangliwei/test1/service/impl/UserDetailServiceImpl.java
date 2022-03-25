@@ -21,6 +21,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserServiceImpl userService;
+
+    /**
+     * 根据用户名获取用户信息
+     * @param username 用户名
+     * @return 用户信息
+     * @throws UsernameNotFoundException 用户名不存在异常
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

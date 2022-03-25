@@ -23,6 +23,16 @@ public class UserController extends BaseController {
     @Autowired
     private IUserService userService;
 
+    @PostMapping("/login")
+    public  AjaxResult login(@RequestBody User user){
+        return AjaxResult.success(userService.login(user));
+    }
+
+    @GetMapping("/logout")
+    public AjaxResult logout(){
+        return AjaxResult.success(userService.logout());
+    }
+
     /**
      * 根据id查询用户
      * @param id 用户id
