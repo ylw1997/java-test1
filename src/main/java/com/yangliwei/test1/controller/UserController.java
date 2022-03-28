@@ -25,7 +25,7 @@ public class UserController extends BaseController {
 
     @PostMapping("/login")
     public  AjaxResult login(@RequestBody User user){
-        return AjaxResult.success(userService.login(user));
+        return AjaxResult.success("登录成功!",userService.login(user));
     }
 
     @GetMapping("/logout")

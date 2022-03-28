@@ -83,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String id = loginUser.getUser().getId().toString();
         String jwt = JwtUtil.createJwt(id);
         // 4,redis中存储token,userid作为key
-        redisCache.setCacheObject(Constant.REDIS_LOGIN_KEY +id, loginUser.getUser());
+        redisCache.setCacheObject(Constant.REDIS_LOGIN_KEY +id, loginUser);
         return jwt;
     }
 
@@ -95,8 +95,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public String logout() {
         //获取 SecurityContextHolder中的用户信息
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        User loginUser = (User) authentication.getPrincipal();
-        Long id = loginUser.getId();
+        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        Long id = loginUser.getUser().getId();
         // 删除redis中的token
         redisCache.deleteObject(Constant.REDIS_LOGIN_KEY + id);
         // 删除SecurityContextHolder中的用户信息

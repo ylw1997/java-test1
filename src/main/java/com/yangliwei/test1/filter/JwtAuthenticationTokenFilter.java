@@ -4,6 +4,7 @@ import com.yangliwei.test1.common.JwtUtil;
 import com.yangliwei.test1.common.RedisCache;
 import com.yangliwei.test1.constant.Constant;
 import com.yangliwei.test1.entity.User;
+import com.yangliwei.test1.service.impl.LoginUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.netty.util.internal.StringUtil;
@@ -32,6 +33,14 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private RedisCache redisCache;
 
+    /**
+     * 判断请求是否需要进行token验证
+     * @param request 请求
+     * @param response 响应
+     * @param filterChain 过滤器链
+     * @throws ServletException 异常
+     * @throws IOException 异常
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 获取token
@@ -51,7 +60,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("token解析失败");
         }
         // 从redis 获取用户信息
-        User loginUser = redisCache.getCacheObject(Constant.REDIS_LOGIN_KEY + userId);
+        LoginUser loginUser = redisCache.getCacheObject(Constant.REDIS_LOGIN_KEY + userId);
         if(Objects.isNull(loginUser)){
             throw new RuntimeException("用户登录异常");
         }
