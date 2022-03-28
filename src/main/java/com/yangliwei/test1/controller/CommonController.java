@@ -5,6 +5,7 @@ import com.yangliwei.test1.common.Upload;
 import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ import java.util.*;
 public class CommonController {
 
     @GetMapping("/")
+    @PreAuthorize("hasAuthority('home111')")
    public AjaxResult homePage (){
        return AjaxResult.success("欢迎使用");
    }
