@@ -66,8 +66,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         System.out.println("用户验证通过：" + loginUser);
         // 存入SecurityContextHolder中
-        // TODO 获取权限信息放在authentication中
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(loginUser, null, null);
+        // 获取权限信息放在authentication中
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         // 放行
         filterChain.doFilter(request, response);
