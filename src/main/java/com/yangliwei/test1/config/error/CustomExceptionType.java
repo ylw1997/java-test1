@@ -16,6 +16,7 @@ public enum CustomExceptionType {
     USER_NOT_LOGIN_OR_PERMISSION(401, "用户未登录或没有权限!"),
     USER_NOT_PERMISSION(403, "用户没有权限!"),
     USER_LOGIN_EXCEPTION(500, "用户登录失败!"),
+    USER_UNAUTHORIZED(401, "用户未授权!"),
     ;
     /**
      *  异常类型

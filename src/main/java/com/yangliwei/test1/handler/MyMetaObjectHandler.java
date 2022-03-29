@@ -1,4 +1,4 @@
-package com.yangliwei.test1.config;
+package com.yangliwei.test1.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

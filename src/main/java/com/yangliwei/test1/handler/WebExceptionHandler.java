@@ -1,6 +1,8 @@
-package com.yangliwei.test1.config.error;
+package com.yangliwei.test1.handler;
 
 import com.yangliwei.test1.common.AjaxResult;
+import com.yangliwei.test1.config.error.CustomException;
+import com.yangliwei.test1.config.error.CustomExceptionType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

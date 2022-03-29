@@ -1,6 +1,8 @@
 package com.yangliwei.test1.config;
 
 import com.yangliwei.test1.filter.JwtAuthenticationTokenFilter;
+import com.yangliwei.test1.handler.AccessDeniedHandlerImpl;
+import com.yangliwei.test1.handler.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -64,7 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 除了登录注册接口，其他接口都需要登录认证
                 .anyRequest().authenticated()
                 .and()
-                // 添加JWT filter
+                // 添加JWT 过滤器
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        // 添加自定义认证异常处理器
+        http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl());
+        // 添加自定义授权异常处理器
+        http.exceptionHandling().accessDeniedHandler(new AccessDeniedHandlerImpl());
     }
 }
