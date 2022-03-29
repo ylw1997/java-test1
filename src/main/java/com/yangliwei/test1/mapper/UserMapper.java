@@ -39,4 +39,11 @@ public interface UserMapper extends BaseMapper<User> {
      * @return User
      */
     User findByUsername(String username);
+
+    /**
+     *  根据用户id查询权限
+     * @param id id
+     * @return List<String>
+     */
+    List<String> findPermissionByUserId(Long id);
 }

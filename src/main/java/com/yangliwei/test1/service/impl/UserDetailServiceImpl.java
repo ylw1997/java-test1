@@ -41,8 +41,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (Objects.isNull(user)) {
             throw new RuntimeException("用户不存在");
         }
-        //查询对应权限
-        List<String> permissions = new ArrayList<>(Arrays.asList("user:add", "user:delete","home"));
-        return new LoginUser(user,permissions);
+        //TODO 查询对应权限
+        List<String> permissionByUserId = userService.findPermissionByUserId(user.getId());
+        return new LoginUser(user,permissionByUserId);
     }
 }

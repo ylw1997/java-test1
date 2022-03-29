@@ -58,4 +58,11 @@ public interface IUserService extends IService<User> {
      * @return String
      */
     String logout();
+
+    /**
+     *  根据用户id查询用户权限
+     * @param id id
+     * @return List<String>
+     */
+    List<String> findPermissionByUserId(Long id);
 }

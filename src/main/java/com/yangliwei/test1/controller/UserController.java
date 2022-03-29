@@ -131,4 +131,14 @@ public class UserController extends BaseController {
         return AjaxResult.success();
     }
 
+    /**
+     * 获取用户权限
+     * @param id 用户id
+     * @return ajaxResult
+     */
+    @GetMapping("/perm/{id}")
+    public AjaxResult permission(@PathVariable Long id){
+        return AjaxResult.success(userService.findPermissionByUserId(id));
+    }
+
 }

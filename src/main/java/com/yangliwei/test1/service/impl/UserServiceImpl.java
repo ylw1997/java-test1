@@ -104,4 +104,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return "退出成功!";
     }
 
+    /**
+     * 根据用户id查询用户权限
+     * @param id 用户id
+     * @return 权限集合
+     */
+    @Override
+    public List<String> findPermissionByUserId(Long id) {
+        return userMapper.findPermissionByUserId(id);
+    }
+
 }

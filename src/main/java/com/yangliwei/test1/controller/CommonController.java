@@ -21,7 +21,7 @@ import java.util.*;
 public class CommonController {
 
     @GetMapping("/")
-    @PreAuthorize("hasAuthority('home111')")
+    @PreAuthorize("hasAuthority('system:dept:list')")
    public AjaxResult homePage (){
        return AjaxResult.success("欢迎使用");
    }

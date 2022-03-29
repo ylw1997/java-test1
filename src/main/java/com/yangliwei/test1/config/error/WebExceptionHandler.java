@@ -51,5 +51,12 @@ public class WebExceptionHandler {
         return AjaxResult.error(new CustomException(CustomExceptionType.PARAM_ERROR, Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage()));
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseBody
+    public  AjaxResult runtimeException(RuntimeException e){
+        log.error("运行时异常：",e);
+        return AjaxResult.error(e.getMessage());
+    }
+
 
 }
