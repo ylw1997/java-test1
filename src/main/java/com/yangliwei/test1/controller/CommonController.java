@@ -20,8 +20,14 @@ import java.util.*;
 @RestController
 public class CommonController {
 
+    /**
+     *  首页
+     * @return AjaxResult
+     * 使用自定义权限方法来判断,必须加前缀@
+     * PreAuthorize("hasAuthority('system:dept:list')")
+     */
     @GetMapping("/")
-    @PreAuthorize("hasAuthority('system:dept:list')")
+    @PreAuthorize("@ex.hasAuthority('system:dept:list')")
    public AjaxResult homePage (){
        return AjaxResult.success("欢迎使用");
    }
