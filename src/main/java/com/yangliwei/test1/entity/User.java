@@ -2,6 +2,7 @@ package com.yangliwei.test1.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.sun.istack.internal.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @Data
 @TableName("user")
 @NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
     @TableId(type = IdType.AUTO,value = "id")
     private Long id;
@@ -45,4 +47,9 @@ public class User implements Serializable {
     @TableLogic(value = "0",delval = "1")
     @TableField(fill = FieldFill.INSERT,select = false)
     private Integer isShow;
+
+    public User(String name,Integer age){
+        this.name = name;
+        this.age = age;
+    }
 }
